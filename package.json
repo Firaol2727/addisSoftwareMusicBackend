@@ -1,0 +1,18 @@
+{
+  "name": "addis_soft_backend",
+  "version": "1.0.0",
+  "description": "backend challenge for ",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon src/index.js"
+  },
+  "type": "module",
+  "author": "Firaol Getachew",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1",
+    "nodemon": "^3.0.3"
+  }
+}
