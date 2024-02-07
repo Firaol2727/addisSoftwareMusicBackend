@@ -36,7 +36,7 @@ export class SongController{
         })
     }
     static async update(request,response,next){
-        let query=request.body;
+        let query=request.body.query;
         let id=request.params.id;
         console.log("query ",query)
         SongsService.update(id,query)
@@ -50,6 +50,24 @@ export class SongController{
     }
     static async remove (request,response,next){
         SongsService.remove(request.body.id)
+        .then(data=>{
+            response.send(data);
+        })
+        .catch((error)=>{
+            next(error)
+        })
+    }
+    static async fetchOne(request,response,next){
+        SongsService.fetchOne(request.params.id)
+        .then(data=>{
+            response.send(data);
+        })
+        .catch((error)=>{
+            next(error)
+        })
+    }
+    static async getArtistsAlbums(request,response,next){
+        SongsService.getArtistsAlbums(request.query.limit)
         .then(data=>{
             response.send(data);
         })

@@ -2,11 +2,21 @@ import express from "express";
 import mongoose from "mongoose";
 import { InitializeDatabase } from "./helpers/DB.helper.js";
 import bodyParser from "body-parser";
+import morganBody from 'morgan-body';
 import SongRouter from "./routes/song.router.js";
 import AnalyticsRouter from './routes/analytics.router.js';
+import cors from 'cors';
 InitializeDatabase();
 const app =express();
+morganBody(app);
+app.use(
+  cors({
+    origin: 'http://localhost:3000', // Allow requests from this origin
+    // Additional CORS options
+  })
+);
 app.use(bodyParser.json());
+
 app.use('/song',SongRouter);
 app.use('/analytics',AnalyticsRouter);
 app.get("/hello",(req,res)=>{

@@ -103,6 +103,11 @@ export class AnalyticsService {
         return new Promise((resolve, reject) => {
             Song.aggregate([
                 {
+                    $match: {
+                      album: { $nin: ["", null] } // Filter out empty or null albums
+                    }
+                  },
+                {
                     $group: {
                       _id: "$album",
                       noOfSongs: { $sum: 1 }
